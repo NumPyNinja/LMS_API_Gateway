@@ -1,0 +1,20 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+server:
+  port: 8085
+spring:
+  application:
+    name: LMS-API-GATEWAY-SERVICE
+  cloud:
+    gateway:
+      routes:
+        - id: LMS
+          uri: http://localhost:1234
+          predicates:
+            - Path=/lms/**
+        - id: DIETICIAN
+          uri: http://localhost:5678
+          predicates:
+            - Path=/dietician/**
